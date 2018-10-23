@@ -48,6 +48,42 @@ BOOST_AUTO_TEST_SUITE(database_tests)
       } FC_LOG_AND_RETHROW()
    }
 
+
+   // Simple tests of undo infrastructure
+   BOOST_AUTO_TEST_CASE(list_config_test) {
+      try {
+         TESTER test;
+         auto &db = test.control->db();
+
+         auto ses = db.start_undo_session(true);
+
+         // Create an account
+         db.create<global_property_list_object>([](global_property_list_object &a) {
+                 chain_list_config config;
+                 config.list_configuration={1};
+           a.set_list(config);
+         });
+
+         // Make sure we can retrieve that account by name
+         const global_property_list_object& ptr = db.get<global_property_list_object>();
+         chain_list_config a  = ptr.get_list();
+         BOOST_TEST(a.list_configuration.size > 0);
+         uint64_t v = 0;
+         if(a.list_configuration.size > 0)
+         {
+               v =  *(a.list_configuration.begin());
+         }
+         BOOST_TEST(v > 0);
+         // Undo creation of the account
+         ses.undo();
+
+        //  // Make sure we can no longer find the account
+        //  ptr = db.find<global_property_list_object, by_name, std::string>("billy");
+        //  BOOST_TEST(ptr == nullptr);
+      } FC_LOG_AND_RETHROW()
+   }
+
+
    // Test the block fetching methods on database, fetch_bock_by_id, and fetch_block_by_number
    BOOST_AUTO_TEST_CASE(get_blocks) {
       try {
