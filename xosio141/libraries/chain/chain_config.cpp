@@ -41,6 +41,9 @@ namespace eosio { namespace chain {
 
       EOS_ASSERT( 1 <= max_authority_depth, action_validate_exception,
                   "max authority depth should be at least 1" );
+
+      EOS_ASSERT( 0 <= resource_usage_per_day_unlimit_threshold, action_validate_exception,
+                  "per day resource usage unlimit threshold should be at least 0" );
 }
 
 } } // namespace eosio::chain

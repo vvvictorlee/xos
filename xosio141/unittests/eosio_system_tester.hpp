@@ -303,7 +303,8 @@ public:
          ("max_inline_action_depth", 4 + n)
          ("max_authority_depth", 6 + n)
          ("max_ram_size", (n % 10 + 1) * 1024 * 1024)
-         ("ram_reserve_ratio", 100 + n);
+         ("ram_reserve_ratio", 100 + n)
+         ("resource_usage_per_day_unlimit_threshold",1000+n);
    }
 
    action_result regproducer( const account_name& acnt, int params_fixture = 1 ) {

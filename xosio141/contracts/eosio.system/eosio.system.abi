@@ -239,7 +239,8 @@
          {"name":"max_transaction_delay",               "type":"uint32"},
          {"name":"max_inline_action_size",              "type":"uint32"},
          {"name":"max_inline_action_depth",             "type":"uint16"},
-         {"name":"max_authority_depth",                 "type":"uint16"}
+         {"name":"max_authority_depth",                 "type":"uint16"},
+         {"name":"resource_usage_per_day_unlimit_threshold",                 "type":"uint64"}
 
       ]
     },{

@@ -40,6 +40,8 @@ struct genesis_state {
       .max_inline_action_size               = config::default_max_inline_action_size,
       .max_inline_action_depth              = config::default_max_inline_action_depth,
       .max_authority_depth                  = config::default_max_auth_depth,
+         .resource_usage_per_day_unlimit_threshold= config::default_resource_usage_per_day_unlimit_threshold,
+
    };
 
    time_point                               initial_timestamp;

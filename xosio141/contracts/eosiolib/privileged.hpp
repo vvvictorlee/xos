@@ -95,6 +95,8 @@ namespace eosio {
       uint16_t max_authority_depth;
 
 
+   uint64_t resource_usage_per_day_unlimit_threshold; ///< the base amount of transaction per day ,lower than the threshold, account's cpu and net usage donot billed 
+
       EOSLIB_SERIALIZE( blockchain_parameters,
                         (max_block_net_usage)(target_block_net_usage_pct)
                         (max_transaction_net_usage)(base_per_transaction_net_usage)(net_usage_leeway)
@@ -104,7 +106,7 @@ namespace eosio {
                         (max_transaction_cpu_usage)(min_transaction_cpu_usage)
 
                         (max_transaction_lifetime)(deferred_trx_expiration_window)(max_transaction_delay)
-                        (max_inline_action_size)(max_inline_action_depth)(max_authority_depth)
+                        (max_inline_action_size)(max_inline_action_depth)(max_authority_depth)(resource_usage_per_day_unlimit_threshold)
       )
    };
 
